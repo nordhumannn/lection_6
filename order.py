@@ -83,6 +83,24 @@ class Order:
     def __len__(self):
         return len(self.cart)
 
+    def __iter__(self):
+        return CartIter(self.cart)
+
+class CartIter:
+
+    def __init__(self, wrapped):
+        self.wrapped = wrapped
+        self.index = 0
+
+    def __iter__(self, ):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.wrapped):
+            self.index += 1
+            return self.wrapped[self.index - 1]
+        raise StopIteration
+
 pr_1 = Product('Apple', 10)
 pr_2 = Product('Banana', 20)
 pr_3 = Product('Apple_2', 10)
@@ -102,4 +120,9 @@ print()
 
 x = order_1[2:]
 for item in x:
+    print(item)
+
+print()
+
+for item in order_1:
     print(item)
