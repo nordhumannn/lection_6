@@ -1,6 +1,3 @@
-from email.errors import StartBoundaryNotFoundDefect
-
-
 STUDENTS_LIMIT = 10
 
 class Student:
